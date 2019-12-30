@@ -1,0 +1,44 @@
+<header class="navbar">
+  <div class="limiter">
+    <div routerLink="/" class="logo"></div>
+    <div class="compact-menu">
+      <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+    </div>
+    <div class="search">
+      <fa-icon class="prefix" [icon]="['fas', 'search']"></fa-icon>
+      <form (ngSubmit)="submitSearch()">
+        <label class="offscreen" for="search">Search</label>
+        <input
+          [(ngModel)]="searchValue"
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Products and Categories"
+        />
+        <button [hidden]="true" type="submit"></button>
+      </form>
+
+      <button
+        [ngStyle]="{ display: !searchValue ? 'none' : '' }"
+        (click)="searchValue = ''"
+        matRipple
+        class="btn suffix"
+      >
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
+      </button>
+    </div>
+    <div class="menu">
+      <button [routerLink]="[item?.link || '']" *ngFor="let item of menuItems">
+        {{ item.label }}
+      </button>
+    </div>
+    <div class="button-group">
+      <div class="search-button">
+        <fa-icon [icon]="['fas', 'search']"></fa-icon>
+      </div>
+      <app-favorite-button></app-favorite-button>
+      <app-cart-button></app-cart-button>
+      <app-dark-toggle></app-dark-toggle>
+    </div>
+  </div>
+</header>

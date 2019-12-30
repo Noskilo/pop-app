@@ -1,0 +1,53 @@
+@import "~@angular/material/theming";
+
+@mixin pop-product-page($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+
+  app-product-page {
+    .cart-button {
+      background-color: mat-color($primary, 500);
+      color: mat-color($primary, "500-contrast");
+    }
+
+    .header {
+      .divider {
+        color: mat-color($foreground, divider);
+      }
+    }
+
+    .category-summary {
+      .category-chain {
+        span {
+          color: mat-color($foreground, text);
+          &:hover {
+            color: mat-color($primary, 300);
+          }
+        }
+
+        span:not(:last-child) {
+          &::after {
+            color: mat-color($foreground, divider);
+          }
+        }
+      }
+    }
+
+    .price {
+      .sale {
+        color: mat-color($accent, A700);
+      }
+    }
+
+    .radio-group {
+      .attribute-group {
+        color: mat-color($foreground, secondary-text);
+      }
+    }
+
+    .favorite-button {
+      color: mat-color($foreground, icon);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="store-card">
+  <div style="position: relative;" ratio="16:9" appFixedAspectRatio>
+    <div
+      class="banner"
+      [ngStyle]="{
+        'background-image':
+          'url(' +
+          (store?.banner?.imageUrl
+            ? store.banner.imageUrl
+            : 'assets/images/no-banner.jpg') +
+          ')'
+      }"
+    ></div>
+  </div>
+
+  <div class="store-details">
+    <h4 style="margin: 0;">{{ store.name }}</h4>
+    <app-star-rating [rating]="3"></app-star-rating>
+  </div>
+</div>

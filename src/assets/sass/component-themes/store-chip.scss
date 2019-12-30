@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+@mixin pop-store-chip($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  app-store-chip {
+    .container {
+      background-color: mat-color($background, card);
+    }
+  }
+}

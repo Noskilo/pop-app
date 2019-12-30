@@ -1,0 +1,20 @@
+@import "~@angular/material/theming";
+
+@mixin pop-navbar($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  app-navbar {
+    header.navbar {
+      background-color: mat-color($background, "app-bar");
+
+      .menu {
+        button {
+          color: mat-color($foreground, text);
+        }
+      }
+    }
+  }
+}

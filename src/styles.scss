@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/sass/index";
+
+body {
+  font-family: mat-font-family($poppins-typography);
+  margin: 0px;
+  padding: 0px;
+}
+
+html,
+body {
+  box-sizing: border-box;
+}
+
+.offscreen {
+  position: fixed;
+  left: -50%;
+  top: -50%;
+  opacity: 0;
+}
+
+.limiter {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+}
+
+button.btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+div.counter-container {
+  position: relative;
+  button.counter {
+    position: relative;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+  }
+
+  .count {
+    position: absolute;
+    background-color: white;
+    padding: 0.1em 0.2em;
+    color: black;
+    border-radius: 0.2em;
+    font-weight: bold;
+    font-size: 0.8em;
+    bottom: 0;
+    right: 0;
+    transform: translate(30%, 50%);
+    box-shadow: 0px 0px 0.2em 0px rgba(0, 0, 0, 0.5);
+  }
+}

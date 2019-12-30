@@ -1,0 +1,17 @@
+@import "~@angular/material/theming";
+
+@mixin pop-favorite-button($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  app-favorite-button {
+    button.counter {
+      background-image: linear-gradient(
+        135deg,
+        mat-color($primary, 500),
+        mat-color($accent, A700)
+      );
+      color: mat-color($accent, "A700-contrast");
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<div class="container" (mouseenter)="mouseEnter()" (mouseleave)="mouseAway()">
+  <div
+    [class.active]="isActive(category.id)"
+    #reference
+    (mouseenter)="open(reference, category)"
+    class="item"
+    *ngFor="let category of categories"
+  >
+    <span>
+      {{ category.title }}
+    </span>
+
+    <fa-icon
+      [icon]="
+        category.productCount ? ['fas', 'chevron-right'] : ['fas', 'lock']
+      "
+    ></fa-icon>
+  </div>
+</div>
+
+<!-- <ng-template cdk-portal="">
+  <div class="container child">
+    <div
+      #reference
+      (click)="open(reference, child.id)"
+      class="item"
+      *ngFor="let child of children$ | async"
+    >
+      <span>
+        {{ child.title }}
+      </span>
+
+      <fa-icon
+        [icon]="child.productCount ? ['fas', 'chevron-right'] : ['fas', 'lock']"
+      ></fa-icon>
+    </div>
+  </div>
+</ng-template> -->

@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="limiter">
+  <div style="min-height: 100vh;">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<footer>
+  <div class="limiter">
+    <div class="section">
+      <strong>About Us</strong>
+      <div class="separator"></div>
+      <p>Connecting online shoppers with an assortment of local stores.</p>
+
+      <div class="icon-item">
+        <fa-icon [icon]="['fas', 'home']"></fa-icon>
+        Beirut, Lebanon
+      </div>
+      <div class="icon-item">
+        <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+        info@pop961.com
+      </div>
+    </div>
+    <div class="section">
+      <strong>Personal</strong>
+      <div class="separator"></div>
+
+      <a routerLink="/">
+        My Account
+      </a>
+      <a routerLink="/">
+        My Wishlist
+      </a>
+      <a routerLink="/">
+        My Cart
+      </a>
+    </div>
+    <div class="section">
+      <strong>Useful Links</strong>
+      <div class="separator"></div>
+
+      <a routerLink="/">
+        Home
+      </a>
+      <a routerLink="/">
+        FAQ/Support
+      </a>
+      <a routerLink="/">
+        Become a Seller
+      </a>
+      <a routerLink="/">
+        Contact Us
+      </a>
+    </div>
+  </div>
+  <div class="copyright">© {{ year }} Copyright pop961.com</div>
+</footer>

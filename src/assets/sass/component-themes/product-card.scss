@@ -1,0 +1,20 @@
+@import "~@angular/material/theming";
+
+@mixin pop-product-card($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  app-product-card {
+    .card {
+      background-color: mat-color($background, card);
+
+      .sale {
+        background-color: rgba($color: mat-color($warn, 500), $alpha: 0.6);
+        color: mat-color($warn, "500-contrast");
+      }
+    }
+  }
+}

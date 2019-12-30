@@ -1,0 +1,70 @@
+<div [class.carousel-grid]="showGalleryGrid">
+  <ng-container *ngIf="showGalleryGrid">
+    <div class="gallery-grid">
+      <ng-container *ngFor="let item of slides; index as i">
+        <div
+          (click)="goToSlide(i)"
+          [class.active]="i === currentSlide"
+          class="item"
+          [ngStyle]="{ 'background-image': 'url(' + item?.src + ')' }"
+          ratio="1:1"
+          appFixedAspectRatio
+        ></div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div style="position: relative;">
+    <div
+      (mouseleave)="showZoom = false"
+      #imageContainer
+      style=" backface-visibility: hidden"
+      class="container"
+      [ratio]="ratio"
+      appFixedAspectRatio
+    >
+      <div
+        (click)="goToLink(slide)"
+        class="carousel-item"
+        *ngFor="let slide of slides; index as i"
+        [class.active]="i === currentSlide"
+        [ngStyle]="{ 'background-image': 'url(' + slide.src + ')' }"
+      ></div>
+
+      <div *ngIf="slides.length > 1" (click)="prev()" class="nav prev">
+        <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon>
+      </div>
+
+      <div *ngIf="slides.length > 1" (click)="next()" class="nav next">
+        <fa-icon [icon]="['fas', 'chevron-right']"></fa-icon>
+      </div>
+
+      <div *ngIf="slides.length > 1" class="dots">
+        <div
+          (click)="goToSlide(i)"
+          *ngFor="let slide of slides; index as i"
+          [class.active]="i === currentSlide"
+          class="dot"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      [hidden]="!showZoom"
+      *ngIf="zoomable"
+      [ratio]="ratio"
+      appFixedAspectRatio
+      id="zoomWindow"
+      style="overflow: hidden; position: absolute; background-color: rgba(0, 0, 0, 0.8); z-index: 199; left: 102%; top: 0; width: 100%;"
+    >
+      <div style="position: absolute; top: 50%; left: 50%;">
+        <img
+          style="width: 400%;"
+          id="detailImg"
+          [src]="getCurrentImage()"
+          [ngStyle]="zoomStyle"
+        />
+      </div>
+    </div>
+  </div>
+</div>

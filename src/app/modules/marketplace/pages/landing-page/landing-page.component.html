@@ -1,0 +1,24 @@
+<!-- <div style="padding: 1em;">
+  <app-action-banner></app-action-banner>
+</div> -->
+
+<div class="front-layout">
+  <app-mega-menu></app-mega-menu>
+  <div style="position: relative;">
+    <div class="main-banner">
+      <app-carousel></app-carousel>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let root of rootCategories$ | async">
+    <div *ngIf="root.products.length > 0" class="category-section">
+      <h3>{{ root.title }}</h3>
+      <div class="separator"></div>
+      <div class="products">
+        <ng-container *ngFor="let product of root.products">
+          <app-product-card [product]="product"></app-product-card>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>

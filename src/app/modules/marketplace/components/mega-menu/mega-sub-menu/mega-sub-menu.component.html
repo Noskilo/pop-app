@@ -1,0 +1,39 @@
+<div
+  [@fade]="animationState()"
+  class="container child"
+  (mouseenter)="mouseEnter()"
+  (mouseleave)="mouseAway()"
+>
+  <div
+    #reference
+    class="item"
+    [class.active]="isActive(child.id)"
+    (mouseenter)="open(reference, child)"
+    *ngFor="let child of children"
+  >
+    <span>
+      {{ child.title }}
+    </span>
+
+    <fa-icon
+      [icon]="
+        child.productCount
+          ? child.children?.length > 0
+            ? ['fas', 'chevron-right']
+            : ['fas', 'heart']
+          : ['fas', 'lock']
+      "
+    ></fa-icon>
+  </div>
+</div>
+
+<!-- <div
+  *ngIf="children.length <= 0"
+  [@fade]="animationState(true)"
+  class="container child"
+  [ngStyle]="{ height: 10 * 3 + 'rem' }"
+>
+  <div class="loading">
+    <mat-spinner [diameter]="30"></mat-spinner>
+  </div>
+</div> -->

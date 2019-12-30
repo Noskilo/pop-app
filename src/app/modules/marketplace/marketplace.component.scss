@@ -1,0 +1,47 @@
+footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+
+  .copyright {
+    padding: 1rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .limiter {
+    padding: 2rem;
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+
+    .section {
+      .separator {
+        width: 20%;
+        border-radius: 0.1rem;
+        height: 0.1rem;
+        background-image: linear-gradient(to right, red, rgba(0, 0, 0, 0));
+        margin-bottom: 1em;
+      }
+
+      a {
+        padding-bottom: 1rem;
+        color: white;
+        text-decoration: none;
+        display: block;
+      }
+
+      .icon-item {
+        padding-bottom: 1rem;
+        fa-icon {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  ::ng-deep html {
+    font-size: 12px;
+  }
+}

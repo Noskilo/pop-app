@@ -1,0 +1,48 @@
+@import "~@angular/material/theming";
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+
+$poppins-typography: mat-typography-config(
+  $font-family: "Poppins, sans-serif"
+);
+
+@include mat-core($poppins-typography);
+
+@import "assets/sass/themes/default-light.scss";
+@import "assets/sass/themes/dark.scss";
+
+@import "assets/sass/component-themes/cart-button.scss";
+@import "assets/sass/component-themes/favorite-button.scss";
+@import "assets/sass/component-themes/product-page.scss";
+@import "assets/sass/component-themes/mega-menu.scss";
+@import "assets/sass/component-themes/navbar.scss";
+@import "assets/sass/component-themes/dark-toggle.scss";
+@import "assets/sass/component-themes/product-card.scss";
+@import "assets/sass/component-themes/store-chip.scss";
+@import "assets/sass/component-themes/store-card.scss";
+
+@mixin pop-core($theme) {
+  @include pop-cart-button($theme);
+  @include pop-favorite-button($theme);
+  @include pop-product-page($theme);
+  @include pop-mega-menu($theme);
+  @include pop-navbar($theme);
+  @include pop-dark-toggle($theme);
+  @include pop-product-card($theme);
+  @include pop-store-chip($theme);
+  @include pop-store-card($theme);
+}
+
+@include angular-material-theme($pop-default-light-theme);
+@include pop-core($pop-default-light-theme);
+
+.logo {
+  background-image: url(assets/images/logo.svg);
+}
+
+.dark-theme {
+  .logo {
+    background-image: url(assets/images/logo-dark.svg);
+  }
+  @include angular-material-theme($pop-dark-theme);
+  @include pop-core($pop-dark-theme);
+}

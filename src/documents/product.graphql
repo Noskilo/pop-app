@@ -1,0 +1,59 @@
+query AllProducts {
+  products {
+    name
+    description
+  }
+}
+
+query SearchProducts($search: String!) {
+  products(search: $search) {
+    name
+    description
+  }
+}
+
+query Product($id: ID!) {
+  product(id: $id) {
+    id
+    name
+    description
+    sale
+    inStock
+    images {
+      imageUrl
+    }
+    priceRange {
+      min
+      max
+    }
+    store {
+      name
+      logo {
+        imageUrl
+      }
+    }
+    skus {
+      id
+      stock
+      price
+      currency
+      attributes {
+        id
+        name
+        attributeGroup {
+          id
+          name
+        }
+      }
+    }
+    categories(tree: true) {
+      title
+      children {
+        title
+        children {
+          title
+        }
+      }
+    }
+  }
+}

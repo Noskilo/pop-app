@@ -1,0 +1,57 @@
+query CategoryTree {
+  categories(tree: true) {
+    id
+    title
+    productCount
+    children {
+      id
+      title
+      productCount
+      children {
+        id
+        title
+        productCount
+        children {
+          id
+          title
+          productCount
+        }
+      }
+    }
+  }
+}
+
+query RootCategories {
+  categories(tree: true) {
+    id
+    title
+    products {
+      id
+      name
+      sale
+      inStock
+      store {
+        name
+        logo {
+          imageUrl
+        }
+      }
+      priceRange {
+        min
+        max
+      }
+      images(thumbnailOnly: true) {
+        imageUrl
+      }
+    }
+  }
+}
+
+query CategoryChildrenOf($parentId: Int!) {
+  categoryChildrenOf(parentId: $parentId) {
+    id
+    title
+    productCount
+    hasChildren
+  }
+}

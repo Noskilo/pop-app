@@ -1,0 +1,17 @@
+@import "~@angular/material/theming";
+
+@mixin pop-cart-button($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  app-cart-button {
+    button.counter {
+      background-image: linear-gradient(
+        -45deg,
+        mat-color($primary, 500),
+        mat-color($accent, A700)
+      );
+      color: mat-color($primary, "500-contrast");
+    }
+  }
+}

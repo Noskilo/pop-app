@@ -1,0 +1,208 @@
+<ng-container *ngIf="product; else loading">
+  <div class="details-container">
+    <div style="position: relative;">
+      <div style="position: sticky; top: 6.2rem; z-index: 2;">
+        <app-carousel
+          [zoomable]="true"
+          [showGalleryGrid]="true"
+          [slides]="product.images"
+          ratio="3:4"
+        ></app-carousel>
+      </div>
+    </div>
+    <div>
+      <div class="product-details">
+        <div class="name">
+          <h1>{{ product.name }}</h1>
+          <button
+            aria-label="Toggle Favorite"
+            matRipple
+            class="favorite-button"
+          >
+            <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+          </button>
+        </div>
+
+        <div class="header">
+          <ng-container *ngFor="let category of depthCategories; index as i">
+            <span>{{ category.title }}</span>
+            <ng-container *ngIf="i < depthCategories.length - 1">
+              <span class="divider" style="margin: 0 0.5rem;">|</span>
+            </ng-container>
+          </ng-container>
+
+          <div>
+            <app-star-rating></app-star-rating>
+          </div>
+        </div>
+
+        <form [formGroup]="cartForm">
+          <ng-container *ngFor="let choiceGroup of attributeChoices">
+            <div class="radio-group">
+              <label [for]="'group' + choiceGroup.id" class="attribute-group">{{
+                choiceGroup.name
+              }}</label>
+              <mat-radio-group
+                [id]="'group' + choiceGroup.id"
+                class="example-radio-group"
+                [formControlName]="'group' + choiceGroup.id"
+              >
+                <ng-container *ngFor="let attribute of choiceGroup.attributes">
+                  <div class="attribute-choice">
+                    <mat-radio-button
+                      class="example-radio-button"
+                      [value]="attribute.id"
+                    >
+                      {{ attribute.name }}
+                    </mat-radio-button>
+                  </div>
+                </ng-container>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+
+          <h2 class="price">
+            <ng-container
+              *ngIf="
+                product.priceRange.min === product.priceRange.max;
+                else range
+              "
+            >
+              <div *ngIf="product.sale; else singlePrice">
+                {{
+                  product.priceRange.min -
+                    (product.priceRange.min * product.sale) / 100
+                    | currency: "LBP"
+                }}
+                <small style="font-weight: 500;"
+                  ><s>{{ product.priceRange.min | currency: "LBP" }}</s></small
+                >
+              </div>
+              <ng-template #singlePrice>
+                <div>
+                  {{ product.priceRange.min | currency: "LBP" }}
+                </div>
+              </ng-template>
+            </ng-container>
+            <ng-template #range>
+              <div *ngIf="product.sale; else rangePrice">
+                {{
+                  product.priceRange.min -
+                    (product.priceRange.min * product.sale) / 100
+                    | currency: "LBP"
+                }}
+                -
+                {{
+                  product.priceRange.max -
+                    (product.priceRange.max * product.sale) / 100
+                    | currency: "LBP"
+                }}
+                <small style="font-weight: 500;"
+                  ><s
+                    >{{ product.priceRange.min | currency: "LBP" }} -
+                    {{ product.priceRange.max | currency: "LBP" }}</s
+                  ></small
+                >
+              </div>
+              <ng-template #rangePrice>
+                <div>
+                  {{ product.priceRange.min | currency: "LBP" }} -
+                  {{ product.priceRange.max | currency: "LBP" }}
+                </div>
+              </ng-template>
+            </ng-template>
+            <ng-container *ngIf="product.sale">
+              <span class="sale">{{ product.sale }}% OFF</span>
+            </ng-container>
+          </h2>
+
+          <div *ngIf="!product.inStock; else cartControl" class="no-stock">
+            OUT OF STOCK
+          </div>
+
+          <ng-template #cartControl>
+            <div class="cart-control">
+              <div class="quantity-picker">
+                <button
+                  aria-label="Decrement Quantity"
+                  (click)="decrement()"
+                  [matRippleUnbounded]="true"
+                  [matRippleRadius]="20"
+                  matRipple
+                  matRippleColor="rgba(255, 255, 255, 0.2)"
+                  class="decrement"
+                  type="button"
+                >
+                  <fa-icon [icon]="['fas', 'minus']"></fa-icon>
+                </button>
+                <label class="offscreen" for="quantity">Quantity</label>
+                <input
+                  id="quantity"
+                  formControlName="quantity"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  appIntOnly
+                />
+                <button
+                  aria-label="Increment Quantity"
+                  (click)="increment()"
+                  [matRippleUnbounded]="true"
+                  [matRippleRadius]="20"
+                  matRipple
+                  matRippleColor="rgba(255, 255, 255, 0.2)"
+                  class="increment"
+                  type="button"
+                >
+                  <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+                </button>
+              </div>
+
+              <div class="info">
+                <span [class.show]="message" class="message">
+                  <ng-container *ngIf="message">
+                    {{ message.content }}
+                  </ng-container>
+                </span>
+              </div>
+
+              <button
+                aria-label="Add to Cart"
+                matRipple
+                class="cart-button"
+                [disabled]="cartForm.invalid"
+                type="submit"
+                (click)="addToCart()"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </ng-template>
+        </form>
+
+        <div class="separator"></div>
+
+        <div class="category-summary">
+          <ng-container *ngFor="let categories of flatCategories">
+            <div class="category-chain">
+              <ng-container *ngFor="let category of categories">
+                <span>{{ category.title }}</span>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="description">
+    <app-store-chip [store]="product.store"></app-store-chip>
+
+    <h2>Description</h2>
+    <p>{{ product.description }}</p>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

@@ -1,0 +1,9 @@
+query SearchStores {
+  stores {
+    id
+    name
+    banner {
+      imageUrl
+    }
+  }
+}

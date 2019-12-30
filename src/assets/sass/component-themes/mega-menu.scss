@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+
+@mixin pop-mega-menu($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+
+  app-mega-menu {
+    .container {
+      background-color: mat-color($background, "card");
+    }
+  }
+
+  app-mega-sub-menu {
+    .container {
+      background-color: mat-color($background, card);
+    }
+  }
+}

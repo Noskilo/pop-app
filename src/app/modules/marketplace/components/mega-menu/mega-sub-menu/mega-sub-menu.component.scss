@@ -1,0 +1,43 @@
+.container {
+  border-radius: 1em;
+  max-width: 20rem;
+  box-shadow: 0px 0px 0.5em 0px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  overflow: hidden;
+  transition: all 900ms ease-in;
+
+  &.child {
+    box-shadow: 0px 0px 0.3em 0px rgba(0, 0, 0, 0.1);
+    margin: 0 0.4em;
+  }
+
+  .item {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+
+    * {
+      padding: 1em;
+    }
+
+    &:hover,
+    &.active {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1em;
+  }
+}
