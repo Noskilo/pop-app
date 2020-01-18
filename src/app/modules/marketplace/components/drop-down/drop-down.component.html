@@ -1,0 +1,7 @@
+<ng-template #menu cdkPortal>
+  <div (click)="hide()" [@flyDown]="'in'" class="drop-down">
+    <ul>
+      <ng-content></ng-content>
+    </ul>
+  </div>
+</ng-template>

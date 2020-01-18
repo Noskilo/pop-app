@@ -1,72 +1,89 @@
-<div class="card">
-  <div class="content">
-    <div class="image" [ngStyle]="imageStyle">
-      <button
-        aria-label="Toggle Favorite"
-        matRipple
-        type="button"
-        class="favorite-button"
-      >
-        <fa-icon [icon]="['fas', 'heart']"></fa-icon>
-      </button>
+<div style="width: 15rem;">
+  <div class="card" ratio="2.5:3.5" appFixedAspectRatio>
+    <div class="content">
+      <div class="image" [ngStyle]="imageStyle" ratio="4:3" appFixedAspectRatio>
+        <button
+          aria-label="Toggle Favorite"
+          matRipple
+          type="button"
+          class="favorite-button"
+        >
+          <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+        </button>
 
-      <div [routerLink]="['/product', product.id]" class="link-overlay"></div>
-      <div *ngIf="!product.inStock" class="no-stock">OUT OF STOCK</div>
-      <div *ngIf="product.sale" class="sale">{{ product.sale }}%</div>
-    </div>
-    <div class="caption">
-      <div class="info">
-        <app-star-rating></app-star-rating>
-        <div matRipple class="store" [ngStyle]="storeStyle"></div>
+        <div [routerLink]="['/product', product.id]" class="link-overlay"></div>
+        <div *ngIf="!product.inStock" class="no-stock">OUT OF STOCK</div>
+        <div *ngIf="product.sale" class="sale">{{ product.sale }}%</div>
       </div>
-      <div [routerLink]="['/product', product.id]" class="name">
-        {{ product.name }}
+      <div class="details">
+        <div class="caption">
+          <div class="info">
+            <app-star-rating></app-star-rating>
+            <button
+              aria-label="View Store"
+              [routerLink]="['/store', product.store.id]"
+              type="button"
+              matRipple
+              class="store-button"
+              [ngStyle]="storeStyle"
+            ></button>
+          </div>
+          <div [routerLink]="['/product', product.id]" class="name">
+            {{ product.name }}
+          </div>
+        </div>
+        <div class="price">
+          <ng-container
+            *ngIf="
+              product.priceRange.min === product.priceRange.max;
+              else range
+            "
+          >
+            <div *ngIf="product.sale; else singlePrice">
+              {{
+                product.priceRange.min -
+                  (product.priceRange.min * product.sale) / 100
+                  | currency: "LBP"
+              }}
+              <small style="font-weight: 500;"
+                ><s>{{ product.priceRange.min | currency: "LBP" }}</s></small
+              >
+            </div>
+            <ng-template #singlePrice>
+              <div>
+                {{ product.priceRange.min | currency: "LBP" }}
+              </div>
+            </ng-template>
+          </ng-container>
+          <ng-template #range>
+            <div *ngIf="product.sale; else rangePrice">
+              {{
+                product.priceRange.min -
+                  (product.priceRange.min * product.sale) / 100
+                  | currency: "LBP"
+              }}
+              -
+              {{
+                product.priceRange.max -
+                  (product.priceRange.max * product.sale) / 100
+                  | currency: "LBP"
+              }}
+              <small style="font-weight: 500;"
+                ><s
+                  >{{ product.priceRange.min | currency: "LBP" }} -
+                  {{ product.priceRange.max | currency: "LBP" }}</s
+                ></small
+              >
+            </div>
+            <ng-template #rangePrice>
+              <div>
+                {{ product.priceRange.min | currency: "LBP" }} -
+                {{ product.priceRange.max | currency: "LBP" }}
+              </div>
+            </ng-template>
+          </ng-template>
+        </div>
       </div>
-    </div>
-    <div class="price">
-      <ng-container
-        *ngIf="product.priceRange.min === product.priceRange.max; else range"
-      >
-        <div *ngIf="product.sale; else singlePrice">
-          {{
-            product.priceRange.min -
-              (product.priceRange.min * product.sale) / 100 | currency: "LBP"
-          }}
-          <small style="font-weight: 500;"
-            ><s>{{ product.priceRange.min | currency: "LBP" }}</s></small
-          >
-        </div>
-        <ng-template #singlePrice>
-          <div>
-            {{ product.priceRange.min | currency: "LBP" }}
-          </div>
-        </ng-template>
-      </ng-container>
-      <ng-template #range>
-        <div *ngIf="product.sale; else rangePrice">
-          {{
-            product.priceRange.min -
-              (product.priceRange.min * product.sale) / 100 | currency: "LBP"
-          }}
-          -
-          {{
-            product.priceRange.max -
-              (product.priceRange.max * product.sale) / 100 | currency: "LBP"
-          }}
-          <small style="font-weight: 500;"
-            ><s
-              >{{ product.priceRange.min | currency: "LBP" }} -
-              {{ product.priceRange.max | currency: "LBP" }}</s
-            ></small
-          >
-        </div>
-        <ng-template #rangePrice>
-          <div>
-            {{ product.priceRange.min | currency: "LBP" }} -
-            {{ product.priceRange.max | currency: "LBP" }}
-          </div>
-        </ng-template>
-      </ng-template>
     </div>
   </div>
 </div>

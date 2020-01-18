@@ -271,14 +271,18 @@ export type Query = {
   addresses: Array<Address>,
   attributes: Array<Attribute>,
   me?: Maybe<User>,
-  hello: Scalars['String'],
+  elasticInit: Scalars['Boolean'],
   login?: Maybe<Scalars['String']>,
   refreshToken?: Maybe<Scalars['String']>,
   stores: Array<Store>,
+  store: Store,
 };
 
 
 export type QueryProductsArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  take?: Maybe<Scalars['Int']>,
+  storeId?: Maybe<Scalars['ID']>,
   search?: Maybe<Scalars['String']>
 };
 
@@ -307,6 +311,11 @@ export type QueryLoginArgs = {
 
 export type QueryStoresArgs = {
   search?: Maybe<Scalars['String']>
+};
+
+
+export type QueryStoreArgs = {
+  id: Scalars['ID']
 };
 
 export type Review = {
@@ -379,6 +388,17 @@ export type Wish = {
   updatedAt?: Maybe<Scalars['DateTime']>,
 };
 
+export type LoginQueryVariables = {
+  username: Scalars['String'],
+  password: Scalars['String']
+};
+
+
+export type LoginQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'login'>
+);
+
 export type CategoryTreeQueryVariables = {};
 
 
@@ -415,7 +435,7 @@ export type RootCategoriesQuery = (
       & Pick<Product, 'id' | 'name' | 'sale' | 'inStock'>
       & { store: (
         { __typename?: 'Store' }
-        & Pick<Store, 'name'>
+        & Pick<Store, 'id' | 'name'>
         & { logo: Maybe<(
           { __typename?: 'Image' }
           & Pick<Image, 'imageUrl'>
@@ -456,7 +476,7 @@ export type AllProductsQuery = (
 );
 
 export type SearchProductsQueryVariables = {
-  search: Scalars['String']
+  search?: Maybe<Scalars['String']>
 };
 
 
@@ -464,7 +484,49 @@ export type SearchProductsQuery = (
   { __typename?: 'Query' }
   & { products: Array<(
     { __typename?: 'Product' }
-    & Pick<Product, 'name' | 'description'>
+    & Pick<Product, 'id' | 'name' | 'sale' | 'inStock'>
+    & { store: (
+      { __typename?: 'Store' }
+      & Pick<Store, 'id' | 'name'>
+      & { logo: Maybe<(
+        { __typename?: 'Image' }
+        & Pick<Image, 'imageUrl'>
+      )> }
+    ), priceRange: Maybe<(
+      { __typename?: 'PriceRange' }
+      & Pick<PriceRange, 'min' | 'max'>
+    )>, images: Array<(
+      { __typename?: 'Image' }
+      & Pick<Image, 'imageUrl'>
+    )> }
+  )> }
+);
+
+export type StoreProductsQueryVariables = {
+  search?: Maybe<Scalars['String']>,
+  storeId: Scalars['ID']
+};
+
+
+export type StoreProductsQuery = (
+  { __typename?: 'Query' }
+  & { products: Array<(
+    { __typename?: 'Product' }
+    & Pick<Product, 'id' | 'name' | 'sale' | 'inStock'>
+    & { store: (
+      { __typename?: 'Store' }
+      & Pick<Store, 'id' | 'name'>
+      & { logo: Maybe<(
+        { __typename?: 'Image' }
+        & Pick<Image, 'imageUrl'>
+      )> }
+    ), priceRange: Maybe<(
+      { __typename?: 'PriceRange' }
+      & Pick<PriceRange, 'min' | 'max'>
+    )>, images: Array<(
+      { __typename?: 'Image' }
+      & Pick<Image, 'imageUrl'>
+    )> }
   )> }
 );
 
@@ -486,7 +548,7 @@ export type ProductQuery = (
       & Pick<PriceRange, 'min' | 'max'>
     )>, store: (
       { __typename?: 'Store' }
-      & Pick<Store, 'name'>
+      & Pick<Store, 'id' | 'name'>
       & { logo: Maybe<(
         { __typename?: 'Image' }
         & Pick<Image, 'imageUrl'>
@@ -517,7 +579,9 @@ export type ProductQuery = (
   ) }
 );
 
-export type SearchStoresQueryVariables = {};
+export type SearchStoresQueryVariables = {
+  search?: Maybe<Scalars['String']>
+};
 
 
 export type SearchStoresQuery = (
@@ -532,7 +596,48 @@ export type SearchStoresQuery = (
   )> }
 );
 
+export type StoreQueryVariables = {
+  id: Scalars['ID']
+};
 
+
+export type StoreQuery = (
+  { __typename?: 'Query' }
+  & { store: (
+    { __typename?: 'Store' }
+    & Pick<Store, 'id' | 'name'>
+    & { banner: Maybe<(
+      { __typename?: 'Image' }
+      & Pick<Image, 'imageUrl'>
+    )> }
+  ) }
+);
+
+export type MeQueryVariables = {};
+
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & { me: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'username'>
+  )> }
+);
+
+
+export const LoginDocument = gql`
+    query Login($username: String!, $password: String!) {
+  login(password: $password, username: $username)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LoginGQL extends Apollo.Query<LoginQuery, LoginQueryVariables> {
+    document = LoginDocument;
+    
+  }
 export const CategoryTreeDocument = gql`
     query CategoryTree {
   categories(tree: true) {
@@ -576,6 +681,7 @@ export const RootCategoriesDocument = gql`
       sale
       inStock
       store {
+        id
         name
         logo {
           imageUrl
@@ -635,10 +741,26 @@ export const AllProductsDocument = gql`
     
   }
 export const SearchProductsDocument = gql`
-    query SearchProducts($search: String!) {
+    query SearchProducts($search: String) {
   products(search: $search) {
+    id
     name
-    description
+    sale
+    inStock
+    store {
+      id
+      name
+      logo {
+        imageUrl
+      }
+    }
+    priceRange {
+      min
+      max
+    }
+    images(thumbnailOnly: true) {
+      imageUrl
+    }
   }
 }
     `;
@@ -648,6 +770,38 @@ export const SearchProductsDocument = gql`
   })
   export class SearchProductsGQL extends Apollo.Query<SearchProductsQuery, SearchProductsQueryVariables> {
     document = SearchProductsDocument;
+    
+  }
+export const StoreProductsDocument = gql`
+    query StoreProducts($search: String, $storeId: ID!) {
+  products(search: $search, storeId: $storeId) {
+    id
+    name
+    sale
+    inStock
+    store {
+      id
+      name
+      logo {
+        imageUrl
+      }
+    }
+    priceRange {
+      min
+      max
+    }
+    images(thumbnailOnly: true) {
+      imageUrl
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class StoreProductsGQL extends Apollo.Query<StoreProductsQuery, StoreProductsQueryVariables> {
+    document = StoreProductsDocument;
     
   }
 export const ProductDocument = gql`
@@ -666,6 +820,7 @@ export const ProductDocument = gql`
       max
     }
     store {
+      id
       name
       logo {
         imageUrl
@@ -706,8 +861,8 @@ export const ProductDocument = gql`
     
   }
 export const SearchStoresDocument = gql`
-    query SearchStores {
-  stores {
+    query SearchStores($search: String) {
+  stores(search: $search) {
     id
     name
     banner {
@@ -722,5 +877,39 @@ export const SearchStoresDocument = gql`
   })
   export class SearchStoresGQL extends Apollo.Query<SearchStoresQuery, SearchStoresQueryVariables> {
     document = SearchStoresDocument;
+    
+  }
+export const StoreDocument = gql`
+    query Store($id: ID!) {
+  store(id: $id) {
+    id
+    name
+    banner {
+      imageUrl
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class StoreGQL extends Apollo.Query<StoreQuery, StoreQueryVariables> {
+    document = StoreDocument;
+    
+  }
+export const MeDocument = gql`
+    query Me {
+  me {
+    username
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
+    document = MeDocument;
     
   }

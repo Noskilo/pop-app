@@ -17,7 +17,7 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private meta: Meta) {}
 
   ngOnInit() {
-    this.meta.addTag({
+    this.meta.updateTag({
       name: "Description",
       content: "Connecting online shoppers with an assortment of local stores."
     });

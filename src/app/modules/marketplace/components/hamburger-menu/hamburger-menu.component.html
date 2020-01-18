@@ -1,0 +1,24 @@
+<button
+  (click)="show()"
+  matRipple
+  aria-label="Menu"
+  class="btn btn-lg icon-only compact-menu"
+>
+  <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+</button>
+
+<div class="menu">
+  <ng-container *ngFor="let item of items">
+    <button [routerLink]="[item?.link || '']">
+      {{ item.label }}
+    </button>
+  </ng-container>
+</div>
+
+<app-drop-down #menu [matchWidth]="true" [reference]="reference">
+  <ng-container *ngFor="let item of items">
+    <app-drop-down-item [routerLink]="[item?.link || '']">
+      {{ item.label }}
+    </app-drop-down-item>
+  </ng-container>
+</app-drop-down>

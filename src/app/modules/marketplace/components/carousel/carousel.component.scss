@@ -34,6 +34,7 @@
     top: 0;
     bottom: 0;
     width: 6rem;
+    opacity: 0;
 
     display: flex;
     align-items: center;
@@ -41,6 +42,7 @@
     font-size: 2rem;
     z-index: 300;
     color: rgba(255, 255, 255, 0.5);
+    transition: opacity 300ms ease-in-out;
 
     fa-icon:after {
       content: "";
@@ -54,14 +56,10 @@
       transform: translate(-50%, -50%);
       background-color: rgba(0, 0, 0, 0.2);
       z-index: -1;
-      opacity: 0;
-      transition: opacity 300ms ease-in-out;
     }
 
     &:hover {
-      fa-icon:after {
-        opacity: 1;
-      }
+      opacity: 1;
     }
 
     &.next {

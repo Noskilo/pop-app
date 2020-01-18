@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="limiter">
-  <div style="min-height: 100vh;">
+  <div style="min-height: var(--min-view);">
     <router-outlet></router-outlet>
   </div>
 </div>
@@ -26,32 +26,50 @@
       <strong>Personal</strong>
       <div class="separator"></div>
 
-      <a routerLink="/">
-        My Account
-      </a>
-      <a routerLink="/">
-        My Wishlist
-      </a>
-      <a routerLink="/">
-        My Cart
-      </a>
+      <ul>
+        <li>
+          <a routerLink="/">
+            My Account
+          </a>
+        </li>
+        <li>
+          <a routerLink="/">
+            My Wishlist
+          </a>
+        </li>
+        <li>
+          <a routerLink="/">
+            My Cart
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="section">
       <strong>Useful Links</strong>
       <div class="separator"></div>
 
-      <a routerLink="/">
-        Home
-      </a>
-      <a routerLink="/">
-        FAQ/Support
-      </a>
-      <a routerLink="/">
-        Become a Seller
-      </a>
-      <a routerLink="/">
-        Contact Us
-      </a>
+      <ul>
+        <li>
+          <a routerLink="/">
+            Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="/">
+            FAQ/Support
+          </a>
+        </li>
+        <li>
+          <a routerLink="/">
+            Become a Seller
+          </a>
+        </li>
+        <li>
+          <a routerLink="/">
+            Contact Us
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="copyright">© {{ year }} Copyright pop961.com</div>

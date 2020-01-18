@@ -1,1 +1,67 @@
-<p>login-page works!</p>
+<div class="container">
+  <div class="login-container">
+    <div class="form-container">
+      <div class="response-message">
+        <app-embedded-message
+          [pop]="errorCount"
+          [message]="error"
+        ></app-embedded-message>
+      </div>
+
+      <div class="header">
+        <h2 style="margin: 0;">Log In</h2>
+        <small>
+          <p>Have an account? Log in now and experience pop at it's fullest.</p>
+        </small>
+      </div>
+
+      <form (ngSubmit)="submit()" [formGroup]="loginForm">
+        <div class="form-input">
+          <label for="username">Username or Email</label>
+          <input
+            id="username"
+            type="text"
+            name="userLogin"
+            formControlName="userLogin"
+            [readOnly]="loading"
+          />
+        </div>
+
+        <div class="form-input">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            formControlName="password"
+            [readOnly]="loading"
+          />
+        </div>
+
+        <div style="width: 100%; padding: 1rem;"></div>
+
+        <button
+          [disabled]="loading"
+          matRipple
+          type="submit"
+          class="btn btn-block primary"
+          style="position: relative;"
+        >
+          Login
+          <mat-spinner
+            *ngIf="loading"
+            style="position: absolute; right: 1rem;"
+            color="accent"
+            [diameter]="30"
+          ></mat-spinner>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <div class="login-image">
+      <div class="mini-logo">pop<small>961</small></div>
+    </div>
+  </div>
+</div>

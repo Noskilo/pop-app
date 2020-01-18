@@ -7,12 +7,7 @@ import { Image, Store } from "../../../../../generated/graphql";
   styleUrls: ["./store-chip.component.scss"]
 })
 export class StoreChipComponent implements OnInit {
-  @Input() store: {
-    __typename?: "Store";
-    logo: {
-      __typename?: "Image";
-    } & Pick<Image, "imageUrl">;
-  } & Pick<Store, "name">;
+  @Input() store: Store;
 
   constructor() {}
 

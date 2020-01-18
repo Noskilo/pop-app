@@ -1,0 +1,31 @@
+li {
+  padding: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+
+  outline: none;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  fa-icon {
+    margin-left: 2rem;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.divider {
+    cursor: default;
+    padding: 0;
+    &:after {
+      content: "";
+      display: block;
+      height: 0.1rem;
+      width: 100%;
+    }
+  }
+}

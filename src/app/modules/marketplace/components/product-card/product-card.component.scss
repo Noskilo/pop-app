@@ -7,7 +7,6 @@
 
 .card {
   position: relative;
-  padding-top: 140%;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
@@ -26,7 +25,6 @@
 
     .image {
       position: relative;
-      padding-top: 90%;
       overflow: hidden;
       background-repeat: no-repeat;
       background-position: center;
@@ -64,7 +62,7 @@
       }
 
       .no-stock {
-        mask-image: url(src/assets/images/rough-texture.png);
+        mask-image: url(~/assets/images/rough-texture.png);
         background-clip: border-box;
         -moz-user-select: none;
         user-select: none;
@@ -104,65 +102,74 @@
       }
     }
 
-    .caption {
-      font-weight: 500;
+    .details {
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      position: relative;
-
-      .info {
-        margin: 0.5rem 0.5rem 0 0.5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
-
-        app-star-rating {
-          align-self: center;
-        }
-
-        .store {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 2rem;
-          height: 2rem;
-          overflow: hidden;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-          border-bottom-left-radius: 50%;
-          cursor: pointer;
-          background-color: rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-          // opacity: 0.8;
-        }
-      }
-
-      .name {
-        cursor: pointer;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin: 0.5rem;
-        line-height: 1.2rem;
-        height: 2.4rem;
-        outline: none;
-      }
-    }
-
-    .price {
-      border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
       flex: 1;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      font-weight: bold;
+      justify-content: space-between;
 
-      div {
-        margin: 0 0.5rem;
-        text-align: center;
+      .caption {
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        position: relative;
+
+        .info {
+          margin: 0.5rem 0.5rem 0 0.5rem;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+
+          app-star-rating {
+            align-self: center;
+          }
+
+          .store-button {
+            position: absolute;
+            border: 0;
+            outline: none;
+            top: 0;
+            right: 0;
+            width: 2rem;
+            height: 2rem;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-bottom-left-radius: 50%;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+            // opacity: 0.8;
+          }
+        }
+
+        .name {
+          cursor: pointer;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 0.5rem;
+          line-height: 1.2rem;
+          outline: none;
+          max-height: 3.5rem;
+        }
+      }
+
+      .price {
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+        height: 2.5rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+
+        div {
+          margin: 0 0.5rem;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
       }
     }
   }

@@ -1,0 +1,12 @@
+<li
+  matRipple
+  [matRippleDisabled]="disabled"
+  [class.divider]="divider"
+  [class.disabled]="disabled"
+>
+  <ng-content *ngIf="!divider"></ng-content>
+
+  <ng-container *ngIf="icon">
+    <fa-icon [icon]="icon"></fa-icon>
+  </ng-container>
+</li>

@@ -1,38 +1,32 @@
-<div class="container" (mouseenter)="mouseEnter()" (mouseleave)="mouseAway()">
-  <div
-    [class.active]="isActive(category.id)"
-    #reference
-    (mouseenter)="open(reference, category)"
-    class="item"
-    *ngFor="let category of categories"
-  >
-    <span>
-      {{ category.title }}
-    </span>
-
-    <fa-icon
-      [icon]="
-        category.productCount ? ['fas', 'chevron-right'] : ['fas', 'lock']
-      "
-    ></fa-icon>
-  </div>
-</div>
-
-<!-- <ng-template cdk-portal="">
-  <div class="container child">
+<ng-container *ngIf="!loading; else splash">
+  <div class="container" (mouseenter)="mouseEnter()" (mouseleave)="mouseAway()">
     <div
+      [class.active]="isActive(category.id)"
       #reference
-      (click)="open(reference, child.id)"
+      (mouseenter)="open(reference, category)"
       class="item"
-      *ngFor="let child of children$ | async"
+      *ngFor="let category of categories"
     >
       <span>
-        {{ child.title }}
+        {{ category.title }}
       </span>
 
       <fa-icon
-        [icon]="child.productCount ? ['fas', 'chevron-right'] : ['fas', 'lock']"
+        [icon]="
+          category.productCount ? ['fas', 'chevron-right'] : ['fas', 'lock']
+        "
       ></fa-icon>
     </div>
   </div>
-</ng-template> -->
+</ng-container>
+
+<ng-template #splash>
+  <div class="container">
+    <div class="loading-item" *ngFor="let placeholder of placeholders"></div>
+    <div
+      [@wave]="waveState"
+      (@wave.done)="repeatWave($event)"
+      class="wave-overlay"
+    ></div>
+  </div>
+</ng-template>

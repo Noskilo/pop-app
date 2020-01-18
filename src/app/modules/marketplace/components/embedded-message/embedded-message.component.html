@@ -1,0 +1,10 @@
+<ng-container *ngIf="message">
+  <div [@pop]="pop" [@flyInOut]="'in'" class="embedded-message">
+    <div style="display: inline-block; padding-right: 1rem;">
+      <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+    </div>
+    <div style="flex: 1;">
+      {{ message }}
+    </div>
+  </div>
+</ng-container>

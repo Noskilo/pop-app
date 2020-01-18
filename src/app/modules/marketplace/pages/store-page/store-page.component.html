@@ -1,0 +1,53 @@
+<ng-container *ngIf="store; else spinner">
+  <div
+    class="banner"
+    ratio="4:1"
+    [ngStyle]="{
+      backgroundImage:
+        'url(' + (store.banner?.imageUrl || 'assets/images/no-banner.jpg') + ')'
+    }"
+    appFixedAspectRatio
+  ></div>
+
+  <div class="query-container">
+    <div class="filter-button">
+      <button matRipple class="btn btn-sm" type="button">
+        <fa-icon class="prefix" [icon]="['fas', 'sliders-h']"></fa-icon>
+        Filter
+      </button>
+    </div>
+    <form (ngSubmit)="search(searchStoreProducts.value)">
+      <div class="form-input">
+        <label class="offscreen" for="searchStoreProducts"
+          >Search Store Products</label
+        >
+        <input
+          #searchStoreProducts
+          [placeholder]="'Search ' + store.name"
+          id="searchStoreProducts"
+          type="text"
+          name="searchStoreProducts"
+        />
+      </div>
+      <button style="display: none;" type="submit"></button>
+    </form>
+  </div>
+
+  <ng-container *ngIf="loading">
+    <div class="loading-container">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+  </ng-container>
+
+  <div class="product-grid">
+    <ng-container *ngFor="let product of products">
+      <app-product-card [product]="product"></app-product-card>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #spinner>
+  <div class="loading-container full-center">
+    <mat-spinner [diameter]="80"></mat-spinner>
+  </div>
+</ng-template>

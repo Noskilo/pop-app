@@ -28,8 +28,14 @@
         class="carousel-item"
         *ngFor="let slide of slides; index as i"
         [class.active]="i === currentSlide"
-        [ngStyle]="{ 'background-image': 'url(' + slide.src + ')' }"
-      ></div>
+        [ngStyle]="{ 'background-image': 'url(' + getImage(i) + ')' }"
+      >
+        <img
+          style="display: none;"
+          (load)="imageLoaded(i)"
+          [src]="getImage(i)"
+        />
+      </div>
 
       <div *ngIf="slides.length > 1" (click)="prev()" class="nav prev">
         <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon>
@@ -47,23 +53,23 @@
           class="dot"
         ></div>
       </div>
-    </div>
 
-    <div
-      [hidden]="!showZoom"
-      *ngIf="zoomable"
-      [ratio]="ratio"
-      appFixedAspectRatio
-      id="zoomWindow"
-      style="overflow: hidden; position: absolute; background-color: rgba(0, 0, 0, 0.8); z-index: 199; left: 102%; top: 0; width: 100%;"
-    >
-      <div style="position: absolute; top: 50%; left: 50%;">
-        <img
-          style="width: 400%;"
-          id="detailImg"
-          [src]="getCurrentImage()"
-          [ngStyle]="zoomStyle"
-        />
+      <div
+        [hidden]="!showZoom"
+        *ngIf="zoomable && hasLoaded(currentSlide)"
+        [ratio]="ratio"
+        appFixedAspectRatio
+        id="zoomWindow"
+        style="pointer-events: none; overflow: hidden; position: absolute; background-color: rgba(0, 0, 0, 0.8); z-index: 2; left: 0; top: 0; width: 100%;"
+      >
+        <div style="position: absolute; top: 50%; left: 50%;">
+          <img
+            style="width: 400%;"
+            id="detailImg"
+            [src]="getCurrentImage()"
+            [ngStyle]="zoomStyle"
+          />
+        </div>
       </div>
     </div>
   </div>

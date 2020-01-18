@@ -19,14 +19,14 @@
 
     .category-summary {
       .category-chain {
-        span {
+        a {
           color: mat-color($foreground, text);
           &:hover {
             color: mat-color($primary, 300);
           }
         }
 
-        span:not(:last-child) {
+        a:not(:last-child) {
           &::after {
             color: mat-color($foreground, divider);
           }

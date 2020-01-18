@@ -1,5 +1,15 @@
-query SearchStores {
-  stores {
+query SearchStores($search: String) {
+  stores(search: $search) {
+    id
+    name
+    banner {
+      imageUrl
+    }
+  }
+}
+
+query Store($id: ID!) {
+  store(id: $id) {
     id
     name
     banner {

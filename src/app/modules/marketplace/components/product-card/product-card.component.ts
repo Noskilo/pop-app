@@ -12,20 +12,7 @@ import {
   styleUrls: ["./product-card.component.scss"]
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product: Pick<Product, "id" | "name" | "sale" | "inStock"> & {
-    images: ({
-      __typename?: "Image";
-    } & Pick<Image, "imageUrl">)[];
-    priceRange: {
-      __typename?: "PriceRange";
-    } & Pick<PriceRange, "min" | "max">;
-    store: {
-      __typename?: "Store";
-      logo: {
-        __typename?: "Image";
-      } & Pick<Image, "imageUrl">;
-    } & Pick<Store, "name">;
-  };
+  @Input() product: Product;
 
   imageStyle: any;
   storeStyle: any;

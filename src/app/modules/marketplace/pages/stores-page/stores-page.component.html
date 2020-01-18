@@ -1,3 +1,31 @@
+<div class="query-container">
+  <div class="filter-button">
+    <button matRipple class="btn btn-sm" type="button">
+      <fa-icon class="prefix" [icon]="['fas', 'sliders-h']"></fa-icon>
+      Filter
+    </button>
+  </div>
+  <form (ngSubmit)="search(searchStores.value)">
+    <div class="form-input">
+      <label class="offscreen" for="searchStores">Search Stores</label>
+      <input
+        #searchStores
+        placeholder="Search Stores"
+        id="searchStores"
+        type="text"
+        name="searchStores"
+      />
+    </div>
+    <button style="display: none;" type="submit"></button>
+  </form>
+</div>
+
+<ng-container *ngIf="loading">
+  <div class="loading-container">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-container>
+
 <div class="stores-grid">
   <ng-container *ngFor="let store of stores">
     <app-store-card

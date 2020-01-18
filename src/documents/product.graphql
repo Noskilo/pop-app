@@ -5,10 +5,49 @@ query AllProducts {
   }
 }
 
-query SearchProducts($search: String!) {
+query SearchProducts($search: String) {
   products(search: $search) {
+    id
     name
-    description
+    sale
+    inStock
+    store {
+      id
+      name
+      logo {
+        imageUrl
+      }
+    }
+    priceRange {
+      min
+      max
+    }
+    images(thumbnailOnly: true) {
+      imageUrl
+    }
+  }
+}
+
+query StoreProducts($search: String, $storeId: ID!) {
+  products(search: $search, storeId: $storeId) {
+    id
+    name
+    sale
+    inStock
+    store {
+      id
+      name
+      logo {
+        imageUrl
+      }
+    }
+    priceRange {
+      min
+      max
+    }
+    images(thumbnailOnly: true) {
+      imageUrl
+    }
   }
 }
 
@@ -27,6 +66,7 @@ query Product($id: ID!) {
       max
     }
     store {
+      id
       name
       logo {
         imageUrl

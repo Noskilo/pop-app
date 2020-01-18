@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from "@angular/core";
+import { ThemeService } from "../../services/theme.service";
 
 @Component({
   selector: "app-dark-toggle",
@@ -6,19 +7,7 @@ import { Component, OnInit, Renderer2 } from "@angular/core";
   styleUrls: ["./dark-toggle.component.scss"]
 })
 export class DarkToggleComponent implements OnInit {
-  darkMode = false;
-
-  constructor(private renderer: Renderer2) {}
+  constructor(public theme: ThemeService) {}
 
   ngOnInit() {}
-
-  toggleDarkMode() {
-    if (this.darkMode) {
-      this.renderer.removeClass(document.body, "dark-theme");
-      this.darkMode = false;
-    } else {
-      this.renderer.addClass(document.body, "dark-theme");
-      this.darkMode = true;
-    }
-  }
 }

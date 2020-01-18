@@ -1,3 +1,8 @@
-<button aria-label="Night Mode Toggle" (click)="toggleDarkMode()" matRipple>
-  <fa-icon [icon]="['fas', darkMode ? 'moon' : 'sun']"></fa-icon>
+<button
+  class="btn icon-only"
+  aria-label="Night Mode Toggle"
+  (click)="theme.toggleDarkMode()"
+  matRipple
+>
+  <fa-icon [icon]="['fas', theme.darkMode ? 'moon' : 'sun']"></fa-icon>
 </button>

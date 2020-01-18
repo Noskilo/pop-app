@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  min-height: var(--min-view);
+
+  .login-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 1rem;
+
+    .form-container {
+      .response-message {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(120%, -50%);
+        width: 100%;
+      }
+      .header {
+        margin-bottom: 2rem;
+      }
+      max-width: 20rem;
+
+      position: relative;
+    }
+  }
+
+  .image-container {
+    width: 55%;
+    overflow: hidden;
+
+    .login-image {
+      background-color: black;
+      width: 100%;
+      height: 100%;
+      background-image: url(https://picsum.photos/800/800);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      .mini-logo {
+        padding: 0.1rem 0.5rem;
+        font-weight: bold;
+        mix-blend-mode: difference;
+        color: white;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    .login-container {
+      order: 2;
+
+      .form-container {
+        .response-message {
+          position: absolute;
+          top: 0;
+          right: 50%;
+          transform: translate(50%, -130%);
+          width: 100%;
+        }
+      }
+    }
+
+    .image-container {
+      order: 1;
+      height: 20rem;
+      width: 100%;
+    }
+  }
+}

@@ -2,7 +2,7 @@
   <button aria-label="Favorite Products" matRipple class="counter">
     <fa-icon [icon]="['fas', 'heart']"></fa-icon>
   </button>
-  <div class="count">
+  <div [@pop]="count" class="count">
     {{ count | number }}
   </div>
 </div>

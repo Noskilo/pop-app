@@ -14,11 +14,7 @@
       <div class="product-details">
         <div class="name">
           <h1>{{ product.name }}</h1>
-          <button
-            aria-label="Toggle Favorite"
-            matRipple
-            class="favorite-button"
-          >
+          <button aria-label="Toggle Favorite" matRipple class="btn icon-only">
             <fa-icon [icon]="['fas', 'heart']"></fa-icon>
           </button>
         </div>
@@ -186,7 +182,7 @@
           <ng-container *ngFor="let categories of flatCategories">
             <div class="category-chain">
               <ng-container *ngFor="let category of categories">
-                <span>{{ category.title }}</span>
+                <a>{{ category.title }}</a>
               </ng-container>
             </div>
           </ng-container>
@@ -204,5 +200,7 @@
 </ng-container>
 
 <ng-template #loading>
-  Loading...
+  <div class="loading-container full-center">
+    <mat-spinner [diameter]="80"></mat-spinner>
+  </div>
 </ng-template>

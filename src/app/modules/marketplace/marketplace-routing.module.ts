@@ -6,6 +6,8 @@ import { LandingPageComponent } from "./pages/landing-page/landing-page.componen
 import { ProductPageComponent } from "./pages/product-page/product-page.component";
 import { StoresPageComponent } from "./pages/stores-page/stores-page.component";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
+import { ProductsPageComponent } from "./pages/products-page/products-page.component";
+import { StorePageComponent } from "./pages/store-page/store-page.component";
 
 const routes: Routes = [
   {
@@ -19,6 +21,14 @@ const routes: Routes = [
       {
         path: "product/:id",
         component: ProductPageComponent
+      },
+      {
+        path: "products",
+        component: ProductsPageComponent
+      },
+      {
+        path: "store/:id",
+        component: StorePageComponent
       },
       {
         path: "stores",

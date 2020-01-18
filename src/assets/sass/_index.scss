@@ -19,8 +19,95 @@ $poppins-typography: mat-typography-config(
 @import "assets/sass/component-themes/product-card.scss";
 @import "assets/sass/component-themes/store-chip.scss";
 @import "assets/sass/component-themes/store-card.scss";
+@import "assets/sass/component-themes/login-page.scss";
+
+@mixin pop-common($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  footer {
+    background-color: mat-color($background, "app-bar");
+
+    .copyright {
+      background-color: mat-color($background, "status-bar");
+    }
+    .section {
+      ul {
+        li {
+          a {
+            color: mat-color($foreground, text);
+          }
+        }
+      }
+    }
+  }
+
+  .wave-overlay {
+    background: repeating-linear-gradient(
+      90deg,
+      mat-color($primary, 400),
+      mat-color($primary, 700) 25%,
+      mat-color($primary, 400) 50%
+    );
+  }
+
+  .query-container {
+    border-bottom: 0.2rem solid mat-color($foreground, divider);
+  }
+
+  .drop-down {
+    background-color: mat-color($background, card);
+
+    ul {
+      li {
+        &.divider:after {
+          background-color: mat-color($foreground, divider);
+        }
+
+        &:hover {
+          background-color: mat-color($background, "hover");
+        }
+      }
+    }
+  }
+
+  .embedded-message {
+    background-color: mat-color($warn, 500);
+    color: mat-color($warn, "500-contrast");
+  }
+
+  button.btn {
+    background-color: transparent;
+    color: mat-color($foreground, text);
+  }
+
+  button.btn.primary {
+    background-color: mat-color($primary, 500);
+    color: mat-color($primary, "500-contrast");
+  }
+
+  button.btn.accent {
+    background-color: mat-color($accent, 500);
+    color: mat-color($accent, "500-contrast");
+  }
+
+  div.form-input {
+    input {
+      color: mat-color($foreground, text);
+
+      &.ng-invalid.ng-touched {
+        box-shadow: inset 0.1rem -0.1rem 0rem 0.1rem rgba($color:
+              mat-color($warn, 500), $alpha: 0.8);
+      }
+    }
+  }
+}
 
 @mixin pop-core($theme) {
+  @include pop-common($theme);
   @include pop-cart-button($theme);
   @include pop-favorite-button($theme);
   @include pop-product-page($theme);
@@ -30,6 +117,7 @@ $poppins-typography: mat-typography-config(
   @include pop-product-card($theme);
   @include pop-store-chip($theme);
   @include pop-store-card($theme);
+  @include pop-login-page($theme);
 }
 
 @include angular-material-theme($pop-default-light-theme);

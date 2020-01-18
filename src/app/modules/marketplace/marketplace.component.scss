@@ -1,11 +1,7 @@
 footer {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-
   .copyright {
     padding: 1rem;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.2);
   }
 
   .limiter {
@@ -20,14 +16,24 @@ footer {
         border-radius: 0.1rem;
         height: 0.1rem;
         background-image: linear-gradient(to right, red, rgba(0, 0, 0, 0));
-        margin-bottom: 1em;
       }
 
-      a {
-        padding-bottom: 1rem;
-        color: white;
-        text-decoration: none;
-        display: block;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+        li {
+          &:not(:first-child) {
+            padding-top: 0.5rem;
+          }
+
+          padding-bottom: 0.5rem;
+
+          a {
+            text-decoration: none;
+            display: inline-block;
+          }
+        }
       }
 
       .icon-item {
@@ -40,8 +46,32 @@ footer {
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 530px) {
+  ::ng-deep html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
   ::ng-deep html {
     font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  ::ng-deep html {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  ::ng-deep html {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  ::ng-deep html {
+    font-size: 9px;
   }
 }

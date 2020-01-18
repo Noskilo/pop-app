@@ -1,16 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Category, AttributeGroup } from "src/generated/graphql";
-import {
-  ProductGQL,
-  Sku,
-  Product,
-  Attribute
-} from "../../../../../generated/graphql";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { CartService } from "../../services/cart.service";
-import { Carted } from "../../../../../generated/graphql";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Meta } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
+import { AttributeGroup, Category } from "src/generated/graphql";
+import {
+  Attribute,
+  Carted,
+  Product,
+  ProductGQL
+} from "../../../../../generated/graphql";
+import { CartService } from "../../services/cart.service";
 
 enum MessageType {
   Success,
@@ -57,7 +56,7 @@ export class ProductPageComponent implements OnInit {
         .subscribe(response => {
           this.product = response.data.product as Product;
 
-          this.meta.addTag({
+          this.meta.updateTag({
             name: "Description",
             content: this.product.description
           });
