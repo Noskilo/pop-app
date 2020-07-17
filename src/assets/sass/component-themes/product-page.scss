@@ -17,23 +17,6 @@
       }
     }
 
-    .category-summary {
-      .category-chain {
-        a {
-          color: mat-color($foreground, text);
-          &:hover {
-            color: mat-color($primary, 300);
-          }
-        }
-
-        a:not(:last-child) {
-          &::after {
-            color: mat-color($foreground, divider);
-          }
-        }
-      }
-    }
-
     .price {
       .sale {
         color: mat-color($accent, A700);

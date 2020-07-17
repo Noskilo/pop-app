@@ -6,7 +6,7 @@
           (click)="goToSlide(i)"
           [class.active]="i === currentSlide"
           class="item"
-          [ngStyle]="{ 'background-image': 'url(' + item?.src + ')' }"
+          [ngStyle]="{ 'background-image': 'url(' + item?.src + '), url(https://picsum.photos/1280/720)' }"
           ratio="1:1"
           appFixedAspectRatio
         ></div>
@@ -28,7 +28,7 @@
         class="carousel-item"
         *ngFor="let slide of slides; index as i"
         [class.active]="i === currentSlide"
-        [ngStyle]="{ 'background-image': 'url(' + getImage(i) + ')' }"
+        [ngStyle]="{ 'background-image': 'url(' + getImage(i) + '), url(https://picsum.photos/1280/720)' }"
       >
         <img
           style="display: none;"

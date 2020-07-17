@@ -41,7 +41,7 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
       link: "sample1"
     },
     {
-      src: "https://picsum.photos/1600/900",
+      src: "https://picsum.photos/1920/1080",
       link: "sample2"
     }
   ];

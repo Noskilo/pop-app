@@ -1,0 +1,21 @@
+.support-grid {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem;
+  position: relative;
+
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+
+  .contact {
+    .container {
+      position: sticky;
+      top: 6.5rem;
+    }
+  }
+
+  .questions {
+    h4 {
+      opacity: 0.5;
+    }
+  }
+}

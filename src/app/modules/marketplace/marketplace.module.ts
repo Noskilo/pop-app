@@ -62,7 +62,11 @@ import { StorePageComponent } from "./pages/store-page/store-page.component";
 import { StoresPageComponent } from "./pages/stores-page/stores-page.component";
 import { CartService } from "./services/cart.service";
 import { ThemeService } from "./services/theme.service";
-import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
+import { HamburgerMenuComponent } from "./components/hamburger-menu/hamburger-menu.component";
+import { SupportPageComponent } from "./pages/support-page/support-page.component";
+import { TextFieldModule } from "@angular/cdk/text-field";
+import { FilterComponent } from "./components/filter/filter.component";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   entryComponents: [MegaSubMenuComponent],
@@ -90,7 +94,9 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
     DropDownItemComponent,
     ProductsPageComponent,
     StorePageComponent,
-    HamburgerMenuComponent
+    HamburgerMenuComponent,
+    SupportPageComponent,
+    FilterComponent
   ],
   imports: [
     AppCommonModule,
@@ -103,7 +109,9 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
     OverlayModule,
     PortalModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
+    TextFieldModule,
+    MatCheckboxModule
   ],
   providers: [MegaMenuOverlayService, CartService, ThemeService]
 })

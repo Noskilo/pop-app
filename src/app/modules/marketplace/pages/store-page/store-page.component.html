@@ -4,7 +4,9 @@
     ratio="4:1"
     [ngStyle]="{
       backgroundImage:
-        'url(' + (store.banner?.imageUrl || 'assets/images/no-banner.jpg') + ')'
+        'url(' +
+        (store.banner?.imageUrl || 'assets/images/no-banner.jpg') +
+        '), url(https://picsum.photos/1280/720)'
     }"
     appFixedAspectRatio
   ></div>

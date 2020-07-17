@@ -1,0 +1,15 @@
+form {
+  overflow: visible;
+
+  .container {
+    padding: 0 1rem;
+    width: 15rem;
+    mat-checkbox {
+      display: block;
+      padding: 0.2rem;
+    }
+    .group-header {
+      margin-bottom: 0;
+    }
+  }
+}

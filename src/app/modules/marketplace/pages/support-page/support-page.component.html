@@ -1,0 +1,135 @@
+<div class="support-grid">
+  <section class="questions">
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>General</h3>
+
+    <h4>How do I register on POP961?</h4>
+    <p>
+      If you want to register to buy products on POP961, all you need to do is
+      click the “My Account” link on the top right corner of the page and then
+      click on “Register” on the left side of the page and enter your
+      information.
+    </p>
+    <p>
+      You can now start shopping on POP961!
+    </p>
+
+    <hr />
+    <h4>What can I find on POP961?</h4>
+    <p>
+      From apparel, furniture and decor, to books, electronics and gadgets,
+      POP961 gives you access to endless categories of top quality items.
+    </p>
+
+    <hr />
+    <h4>Who supplies the products?</h4>
+    <p>
+      Countless items from the entire Lebanese market unite under one umbrella,
+      that being POP961. On POP961 you will surely enjoy shopping for amazing
+      products supplied by large top brands as well as unique articles sold by
+      more traditional shops.
+    </p>
+
+    <hr />
+    <h4>Can I review an item?</h4>
+    <p>
+      Of course! We would be happy to hear from you once you receive your item.
+      Your opinion matters and sharing it will help us keep you satisfied!
+    </p>
+    <p>
+      To leave a review, go to the product’s page, scroll down to the “Reviews”
+      section. Rate the product, and tell us what you honestly think about it in
+      the “Your Review” text box. Do not forget to share good pictures of your
+      item!
+    </p>
+
+    <hr />
+    <h4>How do I filter the store products?</h4>
+    <p>
+      Once you click on a category item, you will see filters on the left side
+      of the page. Tick the filters you want, and happy shopping! 🙂
+    </p>
+
+    <hr />
+    <h4>What is your exchange policy?</h4>
+    <p>
+      In case of a defective product you can submit a dispute through our
+      website. Go to My Account > Orders and click on the order you wish to
+      dispute. You will be able to view the order details with a button labeled
+      'Open Dispute', click the button and fill the form. You will be able to
+      view the progress of your dispute under My Account > Disputes.
+    </p>
+
+    <h3>Technical</h3>
+
+    <h4>I forgot my password. What do I do?</h4>
+    <p>
+      On the top right corner of the page, click on “My Account.” Then click on
+      “Lost your password?” link. Enter your username or email then click on
+      “Reset password.” An email with a link to reset your password will be sent
+      to you. Click on the link provided in the email and then enter your new
+      password.
+    </p>
+
+    <hr />
+    <h4>I can't login. What do I do?</h4>
+    <p>
+      Hmm… It seems like you’ve forgotten your username or password. Try
+      clicking on the “Lost your password?” link. In case you have forgotten
+      your username, then please contact us for help.
+    </p>
+
+    <hr />
+    <h4>How do I edit my account settings?</h4>
+    <p>
+      To edit you account settings, click on “My Account” in the top right
+      corner of the page. To edit the shipping and/or billing addresses click on
+      “Addresses”. To edit your Email address, or password, click on “Account
+      details”.
+    </p>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <h2>Ask Us</h2>
+      <small>
+        <p>
+          If you could not find the answer to your question within the FAQ,
+          please do not hesitate to ask here.
+        </p>
+      </small>
+      <form [formGroup]="contactForm">
+        <div class="form-input">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" formControlName="name" />
+        </div>
+        <div class="form-input">
+          <label for="email">Email</label>
+          <input id="email" type="text" name="email" formControlName="email" />
+        </div>
+        <div class="form-input">
+          <label for="subject">Subject</label>
+          <input
+            id="subject"
+            type="text"
+            name="subject"
+            formControlName="subject"
+          />
+        </div>
+
+        <div class="form-input">
+          <label for="message">Message</label>
+          <textarea
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="5"
+            cdkAutosizeMaxRows="10"
+            id="message"
+            name="message"
+            formControlName="message"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

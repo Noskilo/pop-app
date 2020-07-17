@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
     this.loginForm = this.fb.group({
-      userLogin: ["", Validators.required],
+      username: ["", Validators.required],
       password: ["", Validators.required]
     });
   }
@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
     this.loading = true;
     this.authService
       .login(
-        this.loginForm.get("userLogin").value,
+        this.loginForm.get("username").value,
         this.loginForm.get("password").value
       )
       .subscribe(

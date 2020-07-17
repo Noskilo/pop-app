@@ -8,6 +8,7 @@ import { StoresPageComponent } from "./pages/stores-page/stores-page.component";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { ProductsPageComponent } from "./pages/products-page/products-page.component";
 import { StorePageComponent } from "./pages/store-page/store-page.component";
+import { SupportPageComponent } from "./pages/support-page/support-page.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: "products",
         component: ProductsPageComponent
+      },
+      {
+        path: "support",
+        component: SupportPageComponent
       },
       {
         path: "store/:id",

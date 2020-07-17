@@ -1,6 +1,11 @@
 <div class="query-container">
   <div class="filter-button">
-    <button matRipple class="btn btn-sm" type="button">
+    <button
+      (click)="filter.toggle()"
+      matRipple
+      class="btn btn-sm"
+      type="button"
+    >
       <fa-icon class="prefix" [icon]="['fas', 'sliders-h']"></fa-icon>
       Filter
     </button>
@@ -26,11 +31,14 @@
   </div>
 </ng-container>
 
-<div class="stores-grid">
-  <ng-container *ngFor="let store of stores">
-    <app-store-card
-      style="align-self: center;"
-      [store]="store"
-    ></app-store-card>
-  </ng-container>
+<div class="container">
+  <app-filter #filter></app-filter>
+  <div class="stores-grid">
+    <ng-container *ngFor="let store of stores">
+      <app-store-card
+        style="align-self: center;"
+        [store]="store"
+      ></app-store-card>
+    </ng-container>
+  </div>
 </div>

@@ -4,4 +4,10 @@
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
   justify-items: center;
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  overflow: hidden;
 }

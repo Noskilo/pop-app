@@ -23,7 +23,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       link: "/stores"
     },
     {
-      label: "Support"
+      label: "Support",
+      link: "/support"
     },
     {
       label: "Login",

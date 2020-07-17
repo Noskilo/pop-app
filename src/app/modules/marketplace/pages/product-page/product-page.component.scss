@@ -30,20 +30,6 @@
     .category-summary {
       padding-top: 1rem;
       font-size: 0.9rem;
-      .category-chain {
-        a {
-          cursor: pointer;
-          user-select: none;
-        }
-
-        a:not(:last-child) {
-          &::after {
-            content: "/";
-            margin: 0 0.3rem;
-            cursor: default;
-          }
-        }
-      }
     }
 
     .no-stock {

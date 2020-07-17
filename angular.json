@@ -32,7 +32,9 @@
               "src/robots.txt",
               "src/sitemap.xml"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -100,7 +102,9 @@
               "src/robots.txt",
               "src/sitemap.xml"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
@@ -112,7 +116,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -153,5 +159,8 @@
       }
     }
   },
-  "defaultProject": "pop-app"
+  "defaultProject": "pop-app",
+  "cli": {
+    "analytics": "f2a6cc91-f8cd-4f35-900c-51f4e6215c35"
+  }
 }

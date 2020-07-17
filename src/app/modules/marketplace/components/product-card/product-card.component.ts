@@ -21,11 +21,11 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit() {
     this.imageStyle = {
-      backgroundImage: `url(${this.product.images[0].imageUrl})`
+      backgroundImage: `url(${this.product.images[0].imageUrl}), url(https://picsum.photos/250/350)`
     };
 
     this.storeStyle = {
-      backgroundImage: `url(${this.product.store.logo.imageUrl})`
+      backgroundImage: `url(${this.product.store.logo.imageUrl}), url(https://picsum.photos/200/200)`
     };
   }
 }

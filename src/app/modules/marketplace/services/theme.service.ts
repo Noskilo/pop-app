@@ -26,6 +26,7 @@ export class ThemeService {
       }
     }
   }
+
   toggleDarkMode() {
     if (this.darkMode) {
       this.renderer.removeClass(document.body, "dark-theme");
